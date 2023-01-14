@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <script>
+        // Randomly selects rock, paper, or scissors and returns value
+        function getComputerSelection() {
+            n = ((Math.random() * 100) + 1).toFixed(2); // Gets a random number between 1 and 100 to two decimal places
+            if (n < 33.3) {
+                    //console.log("Rock!");
+                    return "Rock";
+            } else if (n > 66.6) {
+                    //console.log("Scissors!");
+                    return "Scissors";
+            } else {
+                    //console.log("Paper!");
+                    return "Paper";
+            }
+        }
+
+        // Gets player selection case insensitive
+        function getPlayerSelection() {
+            let playerSelection = (window.prompt("Rock, Paper, or Scissors?")).toLowerCase();
+            while (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+                window.alert("You must choose: Rock, Paper, or Scissors");
+                playerSelection = window.prompt("Rock, Paper, or Scissors?");
+            }
+            return playerSelection;
+        }
+
+        // Plays a single round of rock, paper, scissors
+        function playRound(playerSelection, computerSelection) {
+            computerSelection = computerSelection.toLowerCase();
+
+            if (playerSelection === "rock") {
+                switch (computerSelection) {
+                    case "rock":
+                        return "Rock ties Rock. Try Again!";
+                        break;
+                    case "paper":
+                        return "Rock loses to Paper. You Lose!"
+                        break;
+                    case "scissors":
+                        return "Rock beats Scissors. You Win!"
+                        break;
+                    default:
+                        window.alert("error");
+                        return;
+                }
+            }
+
+            if (playerSelection === "paper") {
+                switch (computerSelection) {
+                    case "rock":
+                        return "Paper beats Rock. You Win!";
+                        break;
+                    case "paper":
+                        return "Paper ties Paper. Try Again!"
+                        break;
+                    case "scissors":
+                        return "Paper loses to Scissors. You Lose!"
+                        break;
+                    default:
+                        window.alert("Error");
+                }
+            }
+
+            if (playerSelection === "scissors") {
+                switch (computerSelection) {
+                    case "rock":
+                        return "Scissors loses to Rock. You Lose!";
+                        break;
+                    case "paper":
+                        return "Scissors beats Paper. You Win!"
+                        break;
+                    case "scissors":
+                        return "Scissors ties Scissors. Try Again!"
+                        break;
+                    default:
+                        window.alert("Error");
+                }
+            }
+        }
+        // Play 5 rounds of rock, paper, scissors and keep score
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            for (let i = 1; i <= 5; i++) {
+                console.log(playRound(getPlayerSelection(), getComputerSelection()));
+            }
+        }
+
+        //console.log(playRound(getPlayerSelection(), getComputerSelection()));
+        game();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
